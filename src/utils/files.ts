@@ -50,7 +50,9 @@ export const uploadFile = async (filePath: string) => {
   
   dbx.filesUpload({ path: '/' + fileName, contents: fileData })
     .then((response) => {
+      console.log(response)
       console.log(`File ${fileName} successfully upload`)
+      return response.result.id;
     })
     .catch(function(error) {
       console.error(error);

@@ -1,29 +1,27 @@
 import { IsNotEmpty, IsString } from "class-validator";
 
-
 export class CreateProjectDto {
 
   @IsString()
   @IsNotEmpty()
-  project_code: string;
+  projectCode: string;
 
   @IsString()
   @IsNotEmpty()
-  project_name: string;
+  projectName: string;
 
   @IsString()
   @IsNotEmpty()
-  project_status: string;
+  conclusionStatus: string;
+
+  @IsNotEmpty()
+  fileLink: any;
 
   @IsString()
   @IsNotEmpty()
-  pdf: Buffer;
+  conclusionDate: string;
 
   @IsString()
   @IsNotEmpty()
-  date: string;
-
-  @IsString()
-  @IsNotEmpty()
-  conclusion_number: string;
+  conclusionNumber: string;
 }

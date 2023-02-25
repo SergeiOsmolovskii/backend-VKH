@@ -11,20 +11,20 @@ export class ProjectsEntity {
   id: string;
 
   @Column()
-  project_code: string;
+  projectCode: string;
 
   @Column()
-  project_name: string;
+  projectName: string;
 
   @Column()
-  project_status: string;
+  conclusionStatus: string;
 
   @Column()
-  pdf: Buffer;
+  fileLink: string;
 
   @Column()
-  date: string;
+  conclusionDate: string;
 
   @Column()
-  conclusion_number: string;
+  conclusionNumber: string;
 }

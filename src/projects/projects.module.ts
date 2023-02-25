@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProjectsEntity } from './entity/project.entity'
 import { ProjectsController } from './controller/projects.controller';
 import { ProjectsService } from './service/projects.service'
+import { MulterModule } from '@nestjs/platform-express';
 import 'dotenv/config';
 
 @Module({
@@ -13,6 +14,9 @@ import 'dotenv/config';
       entities: [ProjectsEntity],
       useNewUrlParser: true,
       useUnifiedTopology: true,
+    }),
+    MulterModule.register({
+      dest: './uploads',
     }),
     TypeOrmModule.forFeature([ProjectsEntity]),
   ],
