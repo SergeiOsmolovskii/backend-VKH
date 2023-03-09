@@ -15,7 +15,7 @@ export class CreateProjectDto {
   conclusionStatus: string;
 
   @IsNotEmpty()
-  fileLink: any;
+  fileLink: string;
 
   @IsString()
   @IsNotEmpty()

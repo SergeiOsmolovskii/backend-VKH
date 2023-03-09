@@ -1,9 +1,9 @@
+import * as fs from 'fs';
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateProjectDto } from '../dto/create-project.dto';
 import { ProjectsEntity } from '../entity/project.entity';
 import { ProjectsService } from '../service/projects.service';
-import * as fs from 'fs';
 import { promisify } from 'util';
 
 @Controller('projects')
