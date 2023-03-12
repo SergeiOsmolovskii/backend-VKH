@@ -14,9 +14,6 @@ export class CreateProjectDto {
   @IsNotEmpty()
   conclusionStatus: string;
 
-  @IsNotEmpty()
-  fileLink: string;
-
   @IsString()
   @IsNotEmpty()
   conclusionDate: string;

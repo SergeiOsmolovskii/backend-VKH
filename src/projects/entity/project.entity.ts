@@ -20,9 +20,6 @@ export class ProjectsEntity {
   conclusionStatus: string;
 
   @Column()
-  fileLink: string;
-
-  @Column()
   conclusionDate: string;
 
   @Column()

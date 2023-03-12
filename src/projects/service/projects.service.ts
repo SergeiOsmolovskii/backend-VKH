@@ -27,15 +27,13 @@ export class ProjectsService {
   }
 
   public async addProject(projectDto: CreateProjectDto, file: Express.Multer.File): Promise<ProjectsEntity> {
-    let fileLink: string;
     if (file) {
       const savedFile = await this.saveFile(file, projectDto.projectName);
       const uploadUrl = await this.getUrlToUploadFile(projectDto.projectName);
       const filePath = path.join(__dirname, '..', '..', '..', savedFile.path);
       await this.uploadFile(uploadUrl, filePath);
-      fileLink = await this.getLinkToDownloadFile(projectDto.projectName);
     }
-    const projectData = { ...projectDto, id: uuid(), fileLink };
+    const projectData = { ...projectDto, id: uuid() };
     const newProject = this.projectsRepository.create(projectData);
     return await this.projectsRepository.save(newProject);
   }
@@ -99,5 +97,11 @@ export class ProjectsService {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  public downloadConclusion = async (projectId: string) => {
+    const projectName = (await this.getProjectById(projectId)).projectName;
+    const conclusionLink = await this.getLinkToDownloadFile(projectName);
+    return conclusionLink;
   }
 }

@@ -43,4 +43,10 @@ export class ProjectsController {
   public async getProjectById(@Param('id') id: string): Promise<ProjectsEntity> {
     return this.projectService.getProjectById(id);
   }
+
+  @Get('download/:projectId')
+  @HttpCode(HttpStatus.OK)
+  public async downloadConclusion(@Param('projectId') projectId: string) {
+    return this.projectService.downloadConclusion(projectId);
+  }
 }
