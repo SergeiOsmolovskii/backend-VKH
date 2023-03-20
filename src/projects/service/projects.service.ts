@@ -102,6 +102,11 @@ export class ProjectsService {
   public downloadConclusion = async (projectId: string) => {
     const projectName = (await this.getProjectById(projectId)).projectName;
     const conclusionLink = await this.getLinkToDownloadFile(projectName);
-    return conclusionLink;
+    const response = await axios({
+      method: 'GET',
+      url: conclusionLink,
+      responseType: 'arraybuffer'
+    })
+    return response.data;
   }
 }

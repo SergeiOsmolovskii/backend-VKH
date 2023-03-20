@@ -1,10 +1,12 @@
 import * as fs from 'fs';
+import * as path from 'path';
 import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { CreateProjectDto } from '../dto/create-project.dto';
 import { ProjectsEntity } from '../entity/project.entity';
 import { ProjectsService } from '../service/projects.service';
 import { promisify } from 'util';
+import { Response } from 'express';
 
 @Controller('projects')
 
@@ -46,7 +48,13 @@ export class ProjectsController {
 
   @Get('download/:projectId')
   @HttpCode(HttpStatus.OK)
-  public async downloadConclusion(@Param('projectId') projectId: string) {
-    return this.projectService.downloadConclusion(projectId);
+  public async downloadConclusion(@Param('projectId') projectId: string, @Res() res: Response) {
+    try {
+      const conclusionFile = await this.projectService.downloadConclusion(projectId);
+      res.send(conclusionFile);
+    } catch (error) {
+      console.error(error);
+      res.status(500).end();
+    }
   }
 }
